@@ -1,0 +1,42 @@
+﻿@model MovieStore.Models.Identity.MovieListViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="tbl-container">
+    <h2>Movies</h2>
+
+    <div class="input-container">
+        <a href="/Movie/Add" class="btn btn-sec" style="padding:12px 16px">
+            <i class="fa fa-plus-square-o" style="margin-right: 10px"></i>Add Movie
+        </a>
+    </div>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Image</th>
+            <th>Cast</th>
+            <th>Director</th>
+            <th>Description</th>
+        </tr>
+        @foreach (var item in Model.MovieList)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.GenreNames</td>
+                <td>@item.ReleaseYear</td>
+                <td><img style="width:80px; height:60px" src="/Uploads/@item.ImageName"/></td>
+                <td>@item.Cast</td>
+                <td>@item.Director</td>
+                <td>@item.Description</td>
+                <td>
+                    <a href="/Movie/Edit?id=@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                    <a href="/Movie/Delete?id=@item.Id" onclick="return window.confirm('Are you sure want to delete?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

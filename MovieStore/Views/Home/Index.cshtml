@@ -1,0 +1,63 @@
+﻿@model MovieStore.Models.Identity.MovieListViewModel
+@{
+    Layout = "_Layout";
+}
+
+<section class="search-bar">
+    <nav class="nav-bar">
+        <ul class="nav-link" style="width: 100%; display: flex; justify-content: flex-start">
+            <li >
+                <form method="get" asp-action="Index">
+                    <input type="text" name="term" placeholder="search here" style="width: 80%">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>       
+            </li>
+
+            <li>
+                <a href="/Home/Index">All Movies</a>
+            </li>
+
+            <li>
+                <a class="dropdown-title" href="#">Order by: @Model.OrderBy<i class="fa fa-caret-down" style="margin-left: 5px"></i></a>
+                <ul class="dropdown-nav-link" style="width: max-content">
+                    <li><a href="/Home/Index">None</a></li>
+                    <li><a href="/Home/Index?orderBy=title">Title Ascend</a></li>
+                    <li><a href="/Home/Index?orderBy=title_desc">Title Descend</a></li>
+                    <li><a href="/Home/Index?orderBy=release">Release Ascend</a></li>
+                    <li><a href="/Home/Index?orderBy=release_desc">Release Descend</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</section>
+
+<section class="movies">
+    @foreach (var movie in Model.MovieList)
+    {
+        <div class="movie-card" onclick="window.location.href='/Home/MovieDetail?id=@movie.Id'">
+            <div class="movie-image">
+                <img src="/Uploads/@movie.ImageName">
+            </div>
+            <div class="movie-info">
+                <h1>@movie.Title</h1>
+                <h4>Genres : @movie.GenreNames</h4>
+                <h4>Release : @movie.ReleaseYear</h4>
+            </div>
+        </div>
+    }
+    
+</section>
+
+<div class="pagination">
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term&orderBy=@Model.OrderBy" class="active">@i</a>
+        }
+        else
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term&orderBy=@Model.OrderBy">@i</a>
+        }
+    }
+</div>

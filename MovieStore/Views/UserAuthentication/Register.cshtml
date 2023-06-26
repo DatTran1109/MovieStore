@@ -1,0 +1,72 @@
+﻿@model MovieStore.Models.Identity.RegistrationModel
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    .input-container a {
+        color: hotpink;
+        margin-left: 30px;
+        padding: 10px 0px;
+    }
+
+    .input-container a:hover {
+        color: red;
+    }
+</style>
+
+<form class="w-40" asp-action="Register" method="post">
+    <h1 class="pb-10">Register</h1>
+
+    <div class="input-container">
+        <label class="w-40">Full Name</label>
+        <input type="text" class="input" asp-for="Name">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Username</label>
+        <input type="text" class="input" asp-for="Username">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Username"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Email</label>
+        <input type="text" class="input" asp-for="Email">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Email"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Password</label>
+        <input type="password" class="input" asp-for="Password">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Password Confirm</label>
+        <input type="password" class="input" asp-for="PasswordConfirm">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="PasswordConfirm"></span>
+    </div>
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="input-container">
+        <button class="btn btn-default" type="submit">Register</button>
+        <a href="/UserAuthentication/Login">Already have a account! Click here to login</a>
+    </div>
+</form>

@@ -1,0 +1,28 @@
+﻿@model MovieStore.Models.Database.Genre
+@{
+    Layout = "_Layout";
+}
+
+<form class="w-40" asp-action="Edit" method="post">
+    <h2 class="pb-10">Edit Genre</h2>
+    <input type="hidden" class="input" asp-for="Id"/> 
+    <div class="input-container">
+        <label class="w-40">Genre Name</label>
+        <input type="text" class="input" asp-for="GenreName">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="GenreName"></span>
+    </div>
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="input-container">
+        <button class="btn btn-default" type="submit">Edit</button>
+        <a class="btn btn-sec" href="/Genre/GenreToList">All Records</a>
+    </div>
+</form>

@@ -1,0 +1,79 @@
+﻿@model MovieStore.Models.Database.Movie
+@{
+    Layout = "_Layout";
+}
+
+<form class="w-40" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <h2 class="pb-10">Update Movie</h2>
+    <input type="hidden" class="input" asp-for="Id">
+    <input type="hidden" class="input" asp-for="ImageName">
+    <div class="input-container">
+        <label class="w-40">Movie Title</label>
+        <input type="text" class="input" asp-for="Title">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Title"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Movie Genres</label>
+        <select asp-items="Model.MultiGenreList" asp-for="GenreIdList" class="input" multiple>
+            <option value="">--Select--</option>
+        </select>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="GenreIdList"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Release Year</label>
+        <input type="text" class="input" asp-for="ReleaseYear">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ReleaseYear"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Movie Description</label>
+        <textarea type="text" class="input" asp-for="Description"></textarea>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Cast</label>
+        <input type="text" class="input" asp-for="Cast">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Cast"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Director</label>
+        <input type="text" class="input" asp-for="Director">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Director"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40">Images</label>
+        <input type="file" asp-for="ImageFile">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ImageFile"></span>
+    </div>
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="input-container">
+        <button class="btn btn-default" type="submit">Update</button>
+        <a class="btn btn-sec" href="/Movie/MovieToList">All Movies</a>
+    </div>
+</form>

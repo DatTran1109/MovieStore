@@ -1,0 +1,34 @@
+﻿@model MovieStore.Models.Identity.MovieListViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="movie-detail w-80 m-auto">
+    @foreach (var item in Model.MovieList)
+    {
+        <div class="img-container">
+            <img alt="image" src="/Uploads/@item.ImageName">
+        </div>
+
+        <div class="detail-container">
+            <h2>Movie Title: @item.Title</h2>
+            <h2>Genres: @item.GenreNames</h2>
+            <h2>Release Year: @item.ReleaseYear</h2>
+            <h2>Description: @item.Description</h2>
+            <h2>Movie cast: @item.Cast</h2>
+            <h2>Director: @item.Director</h2>
+        </div>
+    }
+</div>
+<div class="w-80 m-auto">
+    <a href="" class="btn btn-default" style="margin-right: 10px">
+        <i class="fa fa-play-circle-o" style="margin-right: 10px"></i>Watch Movie
+    </a>
+    @if(!string.IsNullOrEmpty(User.Identity.Name))
+    {
+        <a href="" class="btn btn-sec" style="margin-right: 10px">
+            <i class="fa fa-download" style="margin-right: 10px"></i>Download
+        </a>
+    }  
+    <a href="/Home/Index" class="btn btn-default">Back</a>
+</div>
