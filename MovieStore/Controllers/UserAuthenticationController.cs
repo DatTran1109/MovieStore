@@ -63,9 +63,7 @@ namespace MovieStore.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-
-        /*public async Task<IActionResult> CreateAdmin()
+        public async Task<IActionResult> CreateAdmin()
         {
             var model = new RegistrationModel
             {
@@ -79,6 +77,6 @@ namespace MovieStore.Controllers
 
             var status = await authService.RegisterAsync(model);
             return Ok(status.Message);
-        }*/
+        }
     }
 }
